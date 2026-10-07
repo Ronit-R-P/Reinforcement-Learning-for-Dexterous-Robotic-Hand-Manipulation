@@ -1,0 +1,80 @@
+import numpy as np
+import mujoco
+import os
+import glob
+
+model = mujoco.MjModel.from_xml_path("debug_hand.xml")
+
+# Build correct maps
+sensor_map = {}
+for i in range(model.nsensor):
+    name = mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_SENSOR, i)
+    if name:
+        sensor_map[name] = (model.sensor_adr[i], model.sensor_dim[i])
+
+joint_map = {}
+for i in range(model.njnt):
+    name = mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_JOINT, i)
+    if name:
+        joint_map[name] = i
+
+actuator_map = {}
+for i in range(model.nu):
+    name = mujoco.mj_id2name(model, mujoco.mjtObj.mjOBJ_ACTUATOR, i)
+    if name:
+        actuator_map[name] = i
+
+# Find all raw files
+all_files = sorted(glob.glob("records/hand_log_*.npy"))
+
+# Separate raw from already-converted
+raw_files = []
+for f in all_files:
+    basename = os.path.basename(f)
+    # Skip files that already have _named in their name
+    if '_named' in basename:
+        continue
+    # Check if a _named version already exists
+    named_path = f.replace('.npy', '_named.npy')
+    if os.path.exists(named_path):
+        print(f"Skipping: {basename} → _named already exists")
+        continue
+    raw_files.append(f)
+
+if not raw_files:
+    print("No new raw files to convert. All done!")
+    exit()
+
+print(f"Found {len(raw_files)} new raw file(s) to convert:\n")
+
+for filepath in raw_files:
+    print(f"Converting: {os.path.basename(filepath)}...")
+    
+    data = np.load(filepath, allow_pickle=True)
+    
+    converted = []
+    for row in data:
+        new_row = {
+            'step': len(converted),
+            'joint_positions': {name: float(row['qpos'][idx]) for name, idx in joint_map.items()},
+            'joint_velocities': {name: float(row.get('qvel', np.zeros(model.nv))[idx]) for name, idx in joint_map.items()},
+            'actuator_forces': {name: float(row.get('actuator_force', row['ctrl'])[idx]) for name, idx in actuator_map.items()},
+            'controls': {name: float(row['ctrl'][idx]) for name, idx in actuator_map.items()},
+            'touch_forces': {
+                name: float(row['sensordata'][adr])
+                for name, (adr, dim) in sensor_map.items() if 'touch' in name
+            },
+            'cylinder_pos': row['sensordata'][sensor_map['cylinder_pos'][0]:sensor_map['cylinder_pos'][0]+3].tolist(),
+            'cylinder_quat': row['sensordata'][sensor_map['cylinder_quat'][0]:sensor_map['cylinder_quat'][0]+4].tolist(),
+            'cylinder_vel': row['sensordata'][sensor_map['cylinder_vel'][0]:sensor_map['cylinder_vel'][0]+3].tolist(),
+            'qpos_raw': row['qpos'].copy(),
+            'ctrl_raw': row['ctrl'].copy(),
+            'sensordata_raw': row['sensordata'].copy(),
+        }
+        converted.append(new_row)
+    
+    new_path = filepath.replace('.npy', '_named.npy')
+    np.save(new_path, np.array(converted, dtype=object), allow_pickle=True)
+    print(f"  → {os.path.basename(new_path)} ({len(converted)} steps)\n")
+
+print("Done. Run test_reward.py again.")

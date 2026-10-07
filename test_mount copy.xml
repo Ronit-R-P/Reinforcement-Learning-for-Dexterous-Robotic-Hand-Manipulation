@@ -1,0 +1,174 @@
+<mujoco model="HandV4_Showcase">
+  <compiler angle="radian"/>
+  <option integrator="implicitfast" timestep="0.001"/>
+
+  <asset>
+    <mesh name="Forearm" content_type="model/stl" file="meshes/Forearm.STL"/>
+    <mesh name="Forearm_Palm_Connector" content_type="model/stl" file="meshes/Forearm_Palm_Connector.STL"/>
+    <mesh name="Palm" content_type="model/stl" file="meshes/Palm.STL"/>
+    <mesh name="Index_knuckle " content_type="model/stl" file="meshes/Index_knuckle .STL"/>
+    <mesh name="Index_Proximal Phalanx" content_type="model/stl" file="meshes/Index_Proximal Phalanx.STL"/>
+    <mesh name="Index_Middle&amp;Distal Phalanx" content_type="model/stl" file="meshes/Index_Middle&amp;Distal Phalanx.STL"/>
+    <mesh name="Middle_knuckle" content_type="model/stl" file="meshes/Middle_knuckle.STL"/>
+    <mesh name="Middle Proximal Phalanx" content_type="model/stl" file="meshes/Middle Proximal Phalanx.STL"/>
+    <mesh name="Middle Middle&amp;Distal " content_type="model/stl" file="meshes/Middle Middle&amp;Distal .STL"/>
+    <mesh name="Ring_knuckle" content_type="model/stl" file="meshes/Ring_knuckle.STL"/>
+    <mesh name="Ring Proximal Phalanx" content_type="model/stl" file="meshes/Ring Proximal Phalanx.STL"/>
+    <mesh name="Ring Middle&amp;Distal " content_type="model/stl" file="meshes/Ring Middle&amp;Distal .STL"/>
+    <mesh name="Pinky_knuckle" content_type="model/stl" file="meshes/Pinky_knuckle.STL"/>
+    <mesh name="Pinky Proximal Phalanx" content_type="model/stl" file="meshes/Pinky Proximal Phalanx.STL"/>
+    <mesh name="Pinky Midde&amp;Distal" content_type="model/stl" file="meshes/Pinky Midde&amp;Distal.STL"/>
+    <mesh name="Thumb rotating Knuckle" content_type="model/stl" file="meshes/Thumb rotating Knuckle.STL"/>
+    <mesh name="Thumb Proximal phalanx" content_type="model/stl" file="meshes/Thumb Proximal phalanx.STL"/>
+    
+    <!-- Checkerboard texture for floor -->
+    <texture name="checker" type="2d" builtin="checker" width="128" height="128" rgb1="0.3 0.3 0.3" rgb2="0.7 0.7 0.7"/>
+    <material name="checker_mat" texture="checker" texrepeat="8 8"/>
+  </asset>
+
+  <worldbody>
+    <!-- Checkerboard floor -->
+    <geom type="plane" size="5 5 0.1" material="checker_mat" rgba="1 1 1 1"/>
+
+    <!-- Hand root - standing straight, palm facing camera -->
+    <body name="hand_root" pos="0 0 0.3" quat="1 0 0 0">
+      
+      <!-- Forearm -->
+      <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Forearm"/>
+      
+      <!-- Palm connector -->
+      <geom pos="0.103264 -0.254982 0.170058" quat="0.707107 0.707107 0 0" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Forearm_Palm_Connector"/>
+      
+      <!-- Palm -->
+      <geom pos="0.103824 -0.251465 0.287368" quat="0.707107 0.707107 0 0" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Palm"/>
+      
+      <!-- Knuckles -->
+      <geom pos="0.135124 -0.24846 0.252368" quat="0.499999 0.499999 0.500001 0.500001" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Index_knuckle "/>
+      <geom pos="0.114974 -0.247461 0.252368" quat="0.5 0.5 0.5 0.5" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Middle_knuckle"/>
+      <geom pos="0.0936742 -0.247461 0.252368" quat="0.5 0.5 0.5 0.5" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Ring_knuckle"/>
+      <geom pos="0.0735242 -0.248461 0.252368" quat="0.5 0.5 0.5 0.5" type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Pinky_knuckle"/>
+      
+      <!-- Index Finger -->
+      <body name="Index_Proximal_Phalanx" pos="0.135124 -0.256104 0.276368" quat="-2.42513e-06 -2.75884e-06 0.751071 0.660221">
+        <inertial pos="-2.49843e-05 0.0244448 0.0030649" quat="0.670788 0.741649 -2.70251e-05 2.4443e-05" mass="0.0126042" diaginertia="2.77247e-06 2.70294e-06 6.4301e-07"/>
+        <joint name="Index_MCP" pos="0 0 0" axis="1 0 0" range="-1.58 -0.135" actuatorfrcrange="-1 1"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Index_Proximal Phalanx"/>
+        
+        <body name="Index_Middle_Distal" pos="0 0.045 0.00035" quat="0.977442 -0.211202 0 0">
+          <inertial pos="-9.9651e-06 0.0343792 0.000403303" quat="0.780019 0.625756 1.29037e-05 -2.01008e-05" mass="0.0190325" diaginertia="6.68174e-06 6.53502e-06 1.0137e-06"/>
+          <site name="index_touch" pos="0 0.048 -0.008" size="0.015" rgba="1 0 0 0.8"/>
+          <joint name="Index_PIP_DIP" pos="0 0 0" axis="1 0 0" range="-1.375 0.385" actuatorfrcrange="-1 1"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Index_Middle&amp;Distal Phalanx"/>
+        </body>
+      </body>
+
+      <!-- Middle Finger -->
+      <body name="Middle_Proximal_Phalanx" pos="0.114974 -0.255104 0.276368" quat="0 0 0.755834 0.654763">
+        <inertial pos="-2.49799e-05 0.0262897 0.00304645" quat="0.676076 0.736832 -2.33815e-05 2.14536e-05" mass="0.0137891" diaginertia="3.34491e-06 3.2668e-06 7.1015e-07"/>
+        <joint name="Middle_MCP" pos="0 0 0" axis="1 0 0" range="-1.7 -0.135" actuatorfrcrange="-1 1"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Middle Proximal Phalanx"/>
+        
+        <body name="Middle_Middle_Distal" pos="0 0.0485 0.00035" quat="0.999646 -0.0266125 0 0">
+          <inertial pos="-9.96822e-06 0.0361185 0.000422804" quat="0.775936 0.630811 -6.68993e-06 5.56689e-06" mass="0.0202001" diaginertia="7.74936e-06 7.58292e-06 1.09102e-06"/>
+          <site name="middle_touch" pos="0 0.050 -0.008" size="0.015" rgba="0 1 0 0.8"/>
+          <joint name="Middle_PIP_DIP" pos="0 0 0" axis="1 0 0" range="-1.77 0.0369" actuatorfrcrange="-1 1"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Middle Middle&amp;Distal "/>
+        </body>
+      </body>
+
+      <!-- Ring Finger -->
+      <body name="Ring_Proximal_Phalanx" pos="0.0936742 -0.255104 0.276368" quat="0 0 0.743826 0.668373">
+        <inertial pos="-2.49836e-05 0.0244448 0.0030649" quat="0.670788 0.741649 -2.57942e-05 2.33297e-05" mass="0.0126042" diaginertia="2.77247e-06 2.70294e-06 6.43009e-07"/>
+        <joint name="Ring_MCP" pos="0 0 0" axis="1 0 0" range="-1.58 -0.135" actuatorfrcrange="-1 1"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Ring Proximal Phalanx"/>
+        
+        <body name="Ring_Middle_Distal" pos="0 0.045 0.00035" quat="0.987553 -0.157286 0 0">
+          <inertial pos="-9.96573e-06 0.0343792 0.000403307" quat="0.780019 0.625756 1.37735e-05 -2.10414e-05" mass="0.0190325" diaginertia="6.68173e-06 6.53501e-06 1.01371e-06"/>
+          <site name="ring_touch" pos="0 0.048 -0.008" size="0.015" rgba="0 0 1 0.8"/>
+          <joint name="Ring_PIP_DIP" pos="0 0 0" axis="1 0 0" range="-1.462 0.26" actuatorfrcrange="-1 1"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Ring Middle&amp;Distal "/>
+        </body>
+      </body>
+
+      <!-- Pinky Finger -->
+      <body name="Pinky_Proximal_Phalanx" pos="0.0735242 -0.256104 0.276368" quat="0 0 0.739291 0.673387">
+        <inertial pos="2.50145e-05 0.0236484 0.00307391" quat="0.668147 0.744029 -2.72758e-05 2.4494e-05" mass="0.0120963" diaginertia="2.55111e-06 2.48534e-06 6.1415e-07"/>
+        <joint name="Pinky_MCP" pos="0 0 0" axis="1 0 0" range="-1.58 -0.135" actuatorfrcrange="-1 1"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Pinky Proximal Phalanx"/>
+        
+        <body name="Pinky_Middle_Distal" pos="0 0.0435 0.00035" quat="0.999991 -0.00427308 0 0">
+          <inertial pos="0.000189963 0.0323608 0.00047461" quat="0.78336 0.621569 1.20775e-05 -1.52212e-05" mass="0.0177056" diaginertia="5.51752e-06 5.38881e-06 9.31289e-07"/>
+          <site name="pinky_touch" pos="0 0.046 -0.007" size="0.012" rgba="1 1 0 0.8"/>
+          <joint name="Pinky_PIP_DIP" pos="0 0 0" axis="1 0 0" range="-1.79 -0.02" actuatorfrcrange="-1 1"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Pinky Midde&amp;Distal"/>
+        </body>
+      </body>
+
+      <!-- Thumb -->
+      <body name="Thumb_Knuckle" pos="0.141024 -0.257098 0.233368" quat="0.0632706 0.704269 -0.0632709 0.704272" gravcomp="1">
+        <inertial pos="-0.0218751 -4.45949e-06 0.00614282" quat="0.430985 0.559635 0.560485 0.432339" mass="0.00629402" diaginertia="1.18109e-06 9.85265e-07 5.2774e-07"/>
+        <joint name="Thumb_Knuckle" pos="0 0 0" axis="1 0 0" range="-1.309 0.5" damping="0.05"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Thumb rotating Knuckle"/>
+        
+        <body name="Thumb_Proximal" pos="-0.025086 0 0.015688" quat="0.663648 0.244068 -0.244069 -0.663651">
+          <inertial pos="0.00104579 0.0495464 -3.57624e-05" quat="0.764354 0.644704 0.00171016 -0.0108217" mass="0.0446641" diaginertia="2.90461e-05 2.89442e-05 3.93565e-06"/>
+          <site name="thumb_touch" pos="0 0.055 -0.010" size="0.018" rgba="1 0 1 0.8"/>
+          <joint name="Thumb_MCP" pos="0 0 0" axis="1 0 0" range="-0.65 0.83" damping="0.15" armature="0.002"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Thumb Proximal phalanx"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="Index_MCP_act" joint="Index_MCP" kp="20" kv="5" ctrlrange="-1.58 -0.135"/>
+    <position name="Index_PIP_DIP_act" joint="Index_PIP_DIP" kp="20" kv="5" ctrlrange="-1.375 0.385"/>
+    <position name="Middle_MCP_act" joint="Middle_MCP" kp="20" kv="5" ctrlrange="-1.7 -0.135"/>
+    <position name="Middle_PIP_DIP_act" joint="Middle_PIP_DIP" kp="20" kv="5" ctrlrange="-1.77 0.0369"/>
+    <position name="Ring_MCP_act" joint="Ring_MCP" kp="20" kv="5" ctrlrange="-1.58 -0.135"/>
+    <position name="Ring_PIP_DIP_act" joint="Ring_PIP_DIP" kp="20" kv="5" ctrlrange="-1.462 0.26"/>
+    <position name="Pinky_MCP_act" joint="Pinky_MCP" kp="20" kv="5" ctrlrange="-1.58 -0.135"/>
+    <position name="Pinky_PIP_DIP_act" joint="Pinky_PIP_DIP" kp="20" kv="5" ctrlrange="-1.79 -0.02"/>
+    <position name="Thumb_Knuckle_act" joint="Thumb_Knuckle" kp="20" kv="5" ctrlrange="-1.309 0.5"/>
+    <position name="Thumb_MCP_act" joint="Thumb_MCP" kp="20" kv="5" ctrlrange="-0.65 0.83"/>
+  </actuator>
+
+  <sensor>
+    <touch name="index_touch_sensor" site="index_touch"/>
+    <touch name="middle_touch_sensor" site="middle_touch"/>
+    <touch name="ring_touch_sensor" site="ring_touch"/>
+    <touch name="pinky_touch_sensor" site="pinky_touch"/>
+    <touch name="thumb_touch_sensor" site="thumb_touch"/>
+  </sensor>
+
+  <keyframe>
+  <!-- Open hand -->
+  <key name="open" qpos="-0.5 -0.5 -0.5 -0.5 0.1 0.1 0.1 0.1 0.1 0"/>
+  
+  <!-- Pinky curls -->
+  <key name="pinky" qpos="-0.5 -0.5 -0.5 -1.5 0.1 0.1 0.1 0.1 0.1 0"/>
+  
+  <!-- Ring curls -->
+  <key name="ring" qpos="-0.5 -0.5 -1.5 -1.5 0.1 0.1 0.1 0.1 0.1 0"/>
+  
+  <!-- Middle curls -->
+  <key name="middle" qpos="-0.5 -1.5 -1.5 -1.5 0.1 0.1 0.1 0.1 0.1 0"/>
+  
+  <!-- Index curls -->
+  <key name="index" qpos="-1.5 -1.5 -1.5 -1.5 0.1 0.1 0.1 0.1 0.1 0"/>
+  
+  <!-- Thumb moves -->
+  <key name="thumb" qpos="-1.5 -1.5 -1.5 -1.5 0.1 0.1 0.1 0.1 0.1 0.5"/>
+  
+  <!-- Back to open -->
+  <key name="open2" qpos="-0.5 -0.5 -0.5 -0.5 0.1 0.1 0.1 0.1 0.1 0"/>
+</keyframe>
+
+  <visual>
+    <headlight ambient="0.4 0.4 0.4" diffuse="0.8 0.8 0.8" specular="0.1 0.1 0.1"/>
+    <map znear="0.001"/>
+    <scale framewidth="0.02" framelength="0.2"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global offwidth="1920" offheight="1080"/>
+  </visual>
+</mujoco>

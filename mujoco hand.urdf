@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="mujoco hand">
+  <link
+    name="Forearm">
+    <inertial>
+      <origin
+        xyz="0.103590299381004 -0.254982323861232 0.0173853027516466"
+        rpy="0 0 0" />
+      <mass
+        value="1.01552203727795" />
+      <inertia
+        ixx="0.00452144194960945"
+        ixy="5.26116731224309E-09"
+        ixz="1.43644464697164E-07"
+        iyy="0.00452638361807215"
+        iyz="-6.02323289342178E-09"
+        izz="0.000766414359981885" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Forearm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Forearm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Forearm_Palm_Connector">
+    <inertial>
+      <origin
+        xyz="3.38405504792805E-05 -0.00488865438575525 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0627537905113747" />
+      <inertia
+        ixx="2.844589843086E-05"
+        ixy="6.99779910813187E-08"
+        ixz="4.46744495032807E-22"
+        iyy="1.36738189123108E-05"
+        iyz="7.78653381989114E-22"
+        izz="3.75753740921323E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Forearm_Palm_Connector.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Forearm_Palm_Connector.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Forearm_Palm_Connector_Joint"
+    type="fixed">
+    <origin
+      xyz="0.103264184567228 -0.254982177094408 0.170057845683727"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="Forearm" />
+    <child
+      link="Forearm_Palm_Connector" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Palm">
+    <inertial>
+      <origin
+        xyz="-0.00261682196107045 -0.0589724034815875 0.00327468766897054"
+        rpy="0 0 0" />
+      <mass
+        value="0.192827630396599" />
+      <inertia
+        ixx="0.0001358586910947"
+        ixy="-4.87977579017173E-06"
+        ixz="2.62783584336455E-06"
+        iyy="0.000138072416479342"
+        iyz="-1.51297456467119E-07"
+        izz="0.000237784715801063" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Palm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Palm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Palm_Joint"
+    type="fixed">
+    <origin
+      xyz="0.00056005 0.11731 -0.0035175"
+      rpy="0 0 0" />
+    <parent
+      link="Forearm_Palm_Connector" />
+    <child
+      link="Palm" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Index_knuckle ">
+    <inertial>
+      <origin
+        xyz="-0.00376580451635386 0.0155765690168918 -0.000516169589048793"
+        rpy="0 0 0" />
+      <mass
+        value="0.0107813032804068" />
+      <inertia
+        ixx="1.326927460703E-06"
+        ixy="-3.56044635938213E-07"
+        ixz="-6.72580473176643E-09"
+        iyy="1.01996421128448E-06"
+        iyz="1.14993712231818E-08"
+        izz="1.75404966751977E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Index_knuckle .STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Index_knuckle .STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Index_knuckle_Joint"
+    type="fixed">
+    <origin
+      xyz="0.0313 -0.035 -0.0030042"
+      rpy="0 1.5708 0" />
+    <parent
+      link="Palm" />
+    <child
+      link="Index_knuckle " />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Index_Proximal Phalanx">
+    <inertial>
+      <origin
+        xyz="-2.49842931180078E-05 0.0244447767571473 0.003064898880591"
+        rpy="0 0 0" />
+      <mass
+        value="0.0126041601434283" />
+      <inertia
+        ixx="2.77247128060304E-06"
+        ixy="-1.71972640039595E-12"
+        ixz="4.92003709143875E-12"
+        iyy="6.63645203645612E-07"
+        iyz="-2.05138576834542E-07"
+        izz="2.68230274870821E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Index_Proximal Phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Index_Proximal Phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Index_MCP "
+    type="revolute">
+    <origin
+      xyz="-0.0076437 0.024 0"
+      rpy="0.12857 1.5708 0" />
+    <parent
+      link="Index_knuckle " />
+    <child
+      link="Index_Proximal Phalanx" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.58"
+      upper="-0.135"
+      effort="1.0"
+      velocity="1.0" />
+  </joint>
+  <link
+    name="Index_Middle&amp;Distal Phalanx">
+    <inertial>
+      <origin
+        xyz="-9.96509676073898E-06 0.0343792105822033 0.000403303018294249"
+        rpy="0 0 0" />
+      <mass
+        value="0.0190325224084342" />
+      <inertia
+        ixx="6.68174097469067E-06"
+        ixy="-2.9321470673879E-11"
+        ixz="-6.26532542288561E-13"
+        iyy="1.27335943758299E-06"
+        iyz="1.16885333996574E-06"
+        izz="6.27536584626519E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Index_Middle&amp;Distal Phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Index_Middle&amp;Distal Phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Index_PIP&amp;DIP_Joint"
+    type="revolute">
+    <origin
+      xyz="0 0.045 0.00035"
+      rpy="-0.42561 0 0" />
+    <parent
+      link="Index_Proximal Phalanx" />
+    <child
+      link="Index_Middle&amp;Distal Phalanx" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.375"
+      upper="0.385"
+      effort="1.0"
+      velocity="1.0" />
+  </joint>
+  <link
+    name="Middle_knuckle">
+    <inertial>
+      <origin
+        xyz="-0.00376580451635383 0.0155765690168918 -0.000516169589048807"
+        rpy="0 0 0" />
+      <mass
+        value="0.0107813032804069" />
+      <inertia
+        ixx="1.32692746070301E-06"
+        ixy="-3.56044635938217E-07"
+        ixz="-6.72580473176675E-09"
+        iyy="1.01996421128449E-06"
+        iyz="1.14993712231847E-08"
+        izz="1.75404966751979E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Middle_knuckle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Middle_knuckle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Middle Knuckle Joint"
+    type="fixed">
+    <origin
+      xyz="0.01115 -0.035 -0.00400416898862915"
+      rpy="0 1.5707963267949 0" />
+    <parent
+      link="Palm" />
+    <child
+      link="Middle_knuckle" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Middle Proximal Phalanx">
+    <inertial>
+      <origin
+        xyz="-2.49798977363241E-05 0.0262897179988782 0.00304644760057227"
+        rpy="0 0 0" />
+      <mass
+        value="0.0137890667742667" />
+      <inertia
+        ixx="3.34490654977945E-06"
+        ixy="-1.04150238364049E-12"
+        ixz="4.88542961161996E-12"
+        iyy="7.28989939843287E-07"
+        iyz="-2.1866074595009E-07"
+        izz="3.24796357749525E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Middle Proximal Phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Middle Proximal Phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="MIddle MCP Joint"
+    type="revolute">
+    <origin
+      xyz="-0.00764372180451106 0.024 0"
+      rpy="0.143058221406142 1.5707963267949 0" />
+    <parent
+      link="Middle_knuckle" />
+    <child
+      link="Middle Proximal Phalanx" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.7"
+      upper="-0.135"
+      effort="1.0"
+      velocity="1.0" />
+  </joint>
+  <link
+    name="Middle Middle&amp;Distal ">
+    <inertial>
+      <origin
+        xyz="-9.96822026255728E-06 0.0361184524208916 0.000422803899966878"
+        rpy="0 0 0" />
+      <mass
+        value="0.0202000703066065" />
+      <inertia
+        ixx="7.7493622224601E-06"
+        ixy="-2.13117024639669E-11"
+        ixz="7.34838092638037E-12"
+        iyy="1.36159295988674E-06"
+        iyz="1.2974384343746E-06"
+        izz="7.31234204589018E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Middle Middle&amp;Distal .STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Middle Middle&amp;Distal .STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Middle PIP&amp;DIP Joint"
+    type="revolute">
+    <origin
+      xyz="0 0.0484999999999999 0.000349999999999684"
+      rpy="-0.0532313350172771 0 0" />
+    <parent
+      link="Middle Proximal Phalanx" />
+    <child
+      link="Middle Middle&amp;Distal " />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.77"
+      upper="0.0369"
+      effort="1.0"
+      velocity="1.0" />
+  </joint>
+  <link
+    name="Ring_knuckle">
+    <inertial>
+      <origin
+        xyz="-0.00376580451635383 0.0155765690168918 -0.00051616958904882"
+        rpy="0 0 0" />
+      <mass
+        value="0.010781303280407" />
+      <inertia
+        ixx="1.32692746070303E-06"
+        ixy="-3.5604463593822E-07"
+        ixz="-6.72580473176724E-09"
+        iyy="1.01996421128449E-06"
+        iyz="1.14993712231851E-08"
+        izz="1.7540496675198E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Ring_knuckle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Ring_knuckle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Ring_knuckle_Joint "
+    type="fixed">
+    <origin
+      xyz="-0.01015 -0.035 -0.00400416898862926"
+      rpy="0 1.5707963267949 0" />
+    <parent
+      link="Palm" />
+    <child
+      link="Ring_knuckle" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Ring Proximal Phalanx">
+    <inertial>
+      <origin
+        xyz="-2.49835924290842E-05 0.0244447777737729 0.00306489624733761"
+        rpy="0 0 0" />
+      <mass
+        value="0.0126041575181691" />
+      <inertia
+        ixx="2.77247070654418E-06"
+        ixy="-1.72917569462019E-12"
+        ixz="4.68709294153175E-12"
+        iyy="6.63644982860602E-07"
+        iyz="-2.05138545956614E-07"
+        izz="2.68230262313495E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Ring Proximal Phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Ring Proximal Phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Ring MCP Joint"
+    type="revolute">
+    <origin
+      xyz="-0.00764372180451106 0.024 0"
+      rpy="0.106756433947933 1.5707963267949 0" />
+    <parent
+      link="Ring_knuckle" />
+    <child
+      link="Ring Proximal Phalanx" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.58"
+      upper="-0.135"
+      effort="1.0"
+      velocity="1.0" />
+  </joint>
+  <link
+    name="Ring Middle&amp;Distal ">
+    <inertial>
+      <origin
+        xyz="-9.96572717888722E-06 0.0343791967047899 0.000403306872541198"
+        rpy="0 0 0" />
+      <mass
+        value="0.0190325143130443" />
+      <inertia
+        ixx="6.68173446565377E-06"
+        ixy="-2.84086700086844E-11"
+        ixz="-1.21344819318471E-12"
+        iyy="1.27335948547187E-06"
+        iyz="1.16885078038658E-06"
+        izz="6.27536003703817E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Ring Middle&amp;Distal .STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Ring Middle&amp;Distal .STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Ring PIP&amp;DIP Joint"
+    type="revolute">
+    <origin
+      xyz="0 0.045 0.000349999999999573"
+      rpy="-0.315883357046928 0 0" />
+    <parent
+      link="Ring Proximal Phalanx" />
+    <child
+      link="Ring Middle&amp;Distal " />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.462"
+      upper="0.26"
+      effort="1.0"
+      velocity="1.0" />
+  </joint>
+  <link
+    name="Pinky_knuckle">
+    <inertial>
+      <origin
+        xyz="-0.00376580451635389 0.0155765690168918 -0.000516169589048807"
+        rpy="0 0 0" />
+      <mass
+        value="0.0107813032804069" />
+      <inertia
+        ixx="1.32692746070301E-06"
+        ixy="-3.56044635938217E-07"
+        ixz="-6.72580473176698E-09"
+        iyy="1.01996421128449E-06"
+        iyz="1.14993712231845E-08"
+        izz="1.75404966751978E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Pinky_knuckle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Pinky_knuckle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Pinky_knuckle_Joint"
+    type="fixed">
+    <origin
+      xyz="-0.0303 -0.0350000000000001 -0.00300416898862926"
+      rpy="0 1.5707963267949 0" />
+    <parent
+      link="Palm" />
+    <child
+      link="Pinky_knuckle" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Pinky Proximal Phalanx">
+    <inertial>
+      <origin
+        xyz="2.50145199945234E-05 0.0236483943900004 0.00307390963004758"
+        rpy="0 0 0" />
+      <mass
+        value="0.012096339694164" />
+      <inertia
+        ixx="2.55111497996749E-06"
+        ixy="-1.95991562269824E-12"
+        ixz="4.63926750153115E-12"
+        iyy="6.35637032206864E-07"
+        iyz="-1.99358679005394E-07"
+        izz="2.46385334910278E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Pinky Proximal Phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Pinky Proximal Phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Pinky MCP"
+    type="revolute">
+    <origin
+      xyz="-0.00764372180450995 0.0240000000000016 0"
+      rpy="0.0932362594662008 1.5707963267949 0" />
+    <parent
+      link="Pinky_knuckle" />
+    <child
+      link="Pinky Proximal Phalanx" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.58"
+      upper="-0.135"
+      effort="1.0"
+      velocity="1.0" />
+  </joint>
+  <link
+    name="Pinky Midde&amp;Distal">
+    <inertial>
+      <origin
+        xyz="0.000189962606944219 0.0323608325985624 0.000474609919870694"
+        rpy="0 0 0" />
+      <mass
+        value="0.0177055995469332" />
+      <inertia
+        ixx="5.51752341423759E-06"
+        ixy="-4.44250177944597E-12"
+        ixz="-4.09956293125919E-12"
+        iyy="1.16159750653682E-06"
+        iyz="9.86692028114158E-07"
+        izz="5.15849955659158E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Pinky Midde&amp;Distal.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Pinky Midde&amp;Distal.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Pinky PIP&amp;DIP Joint"
+    type="revolute">
+    <origin
+      xyz="0 0.0435 0.000349999999999934"
+      rpy="-0.00854618100354586 0 0" />
+    <parent
+      link="Pinky Proximal Phalanx" />
+    <child
+      link="Pinky Midde&amp;Distal" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.79"
+      upper="-0.02"
+      effort="1.0"
+      velocity="1.0" />
+  </joint>
+  <link
+    name="Thumb rotating Knuckle">
+    <inertial>
+      <origin
+        xyz="-0.0218751274799748 -4.45948699229204E-06 0.00614281871470318"
+        rpy="0 0 0" />
+      <mass
+        value="0.00629402330115507" />
+      <inertia
+        ixx="5.57417154653253E-07"
+        ixy="-1.41074078228753E-09"
+        ixz="1.12675271751031E-07"
+        iyy="1.18108843898158E-06"
+        iyz="4.15352082918676E-10"
+        izz="9.55591218042749E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Thumb rotating Knuckle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Thumb rotating Knuckle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Thumb Knuckle Joint"
+    type="revolute">
+    <origin
+      xyz="0.0372 -0.054 0.0056334"
+      rpy="1.3916 0 1.5708" />
+    <parent
+      link="Palm" />
+    <child
+      link="Thumb rotating Knuckle" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.309"
+      upper="0.1"
+      effort="1.0"
+      velocity="1.0" />
+  </joint>
+  <link
+    name="Thumb Proximal phalanx">
+    <inertial>
+      <origin
+        xyz="0.00104579453326595 0.0495463635372219 -3.57624226734674E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.0446640947115856" />
+      <inertia
+        ixx="2.90428301120778E-05"
+        ixy="-2.80956514141207E-07"
+        ixz="4.61530143842934E-08"
+        iyy="4.65067283310639E-06"
+        iyz="4.15836595668842E-06"
+        izz="2.82324003951208E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Thumb Proximal phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="meshes/Thumb Proximal phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Thumb MCP Joint"
+    type="revolute">
+    <origin
+      xyz="-0.025086 0 0.015688"
+      rpy="0.70483 0 -1.5708" />
+    <parent
+      link="Thumb rotating Knuckle" />
+    <child
+      link="Thumb Proximal phalanx" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0.09"
+      upper="0.95"
+      effort="1.0"
+      velocity="1.0" />
+  </joint>
+</robot>

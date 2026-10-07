@@ -1,0 +1,2 @@
+WARNING Mon Jul 27 23:26:11 2026: OpenGL error 0x500 in or before mjr_makeContext
+
